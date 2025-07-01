@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Aksesuarları - Argos</title>
+    <meta name="description" content="Profesyonel case aksesuarları - Argos">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="styles/lightbox.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        header .theme-switch,
+        header .theme-switch *,
+        header .theme-switch-label,
+        header input[type="checkbox"]#theme-toggle,
+        header label[for="theme-toggle"] {
+            display: none !important;
+        }
+
+        /* Ürün Listesi Stilleri */
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .product-item {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 10px;
+        }
+
+        .product-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .product-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .spec-value {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 1200px) {
+            .product-item {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .specs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        /* Modal Düzenlemeleri */
+        .modal-content {
+            max-width: 90vw;
+            width: 1200px;
+        }
+
+        .modal-body {
+            display: block;
+        }
+
+        .gallery-section {
+            padding: 80px 0;
+            background: var(--bg-color);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+        
+        .gallery-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 280px;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+            border-radius: 15px;
+        }
+        
+        .gallery-card:hover .gallery-image img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+
+        .gallery-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                padding: 15px;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Duman Efekti -->
+    <div class="smoke-container">
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h2>ARGOS</h2>
+                    </a>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Anasayfa</a>
+                    <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+                    <div class="nav-dropdown">
+                        <a href="urunler.html" class="nav-link dropdown-toggle">
+                            Ürünler <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="altyapi-sistemleri.html" class="dropdown-link">
+                                <span>Altyapı Sistemleri</span>
+                            </a>
+                            <a href="hard-case-sistemleri.html" class="dropdown-link">
+                                <span>Hard Case Sistemleri</span>
+                            </a>
+                            <a href="case-aksesuarlari.html" class="dropdown-link">
+                                <span>Case Aksesuarları</span>
+                            </a>
+                            <a href="enerji-panosu-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panosu Sistemleri</span>
+                            </a>
+                            <a href="enerji-box-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Box Sistemleri</span>
+                            </a>
+                            <a href="enerji-panel-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panel Sistemleri</span>
+                            </a>
+                            <a href="motor-kumanda-sistemleri.html" class="dropdown-link">
+                                <span>Motor Kumanda Sistemleri</span>
+                            </a>
+                            <a href="podyum-sistemleri.html" class="dropdown-link">
+                                <span>Podyum Sistemleri</span>
+                            </a>
+                            <a href="ses-sistemleri.html" class="dropdown-link">
+                                <span>Ses Sistemleri</span>
+                            </a>
+                            <a href="isik-sistemleri.html" class="dropdown-link">
+                                <span>Işık Sistemleri</span>
+                            </a>
+                            <a href="goruntu-sistemleri.html" class="dropdown-link">
+                                <span>Görüntü Sistemleri</span>
+                            </a>
+                            <a href="truss-sistemleri.html" class="dropdown-link">
+                                <span>Truss Sistemleri</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="projeler.html" class="nav-link">Projeler</a>
+                    <a href="iletisim.html" class="nav-link">İletişim</a>
+                    <a href="sunum.html" class="nav-link">Sunum</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pure-project-header">
+        <div class="container">
+            <div class="project-header-content pure">
+                <h1 class="project-title pure">Case Aksesuarları</h1>
+                <p class="project-subtitle pure">Profesyonel case tamamlayıcı ürünleri</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <!-- Köşe -->
+                <div class="gallery-card" onclick="openModal('kose-modal')">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-171-300x300.jpeg.webp" alt="Case Köşe" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Köşe Sistemleri</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kilit -->
+                <div class="gallery-card" onclick="openModal('kilit-modal')">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-175-300x244.jpeg.webp" alt="Case Kilit" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Kilit Sistemleri</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kulp -->
+                <div class="gallery-card" onclick="openModal('kulp-modal')">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-178-300x300.jpeg.webp" alt="Case Kulp" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Kulp Sistemleri</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menteşe -->
+                <div class="gallery-card" onclick="openModal('mentese-modal')">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-180-300x300.jpeg.webp" alt="Case Menteşe" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Menteşe Sistemleri</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plaka -->
+                <div class="gallery-card" onclick="openModal('plaka-modal')">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-183-300x300.jpeg.webp" alt="Case Plaka" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Plaka Sistemleri</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plastik Köşeler -->
+                <div class="gallery-card" onclick="openModal('plastik-kose-modal')">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-186-300x300.jpeg.webp" alt="Plastik Köşeler" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Plastik Köşeler</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Köşe Modal -->
+    <div id="kose-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('kose-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>Köşe Sistemleri</h2>
+            </div>
+            <div class="modal-body">
+                <div class="product-list">
+                    <!-- Adam Hall Hardware 4044 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-171-300x300.jpeg.webp" alt="Adam Hall Hardware 4044">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 4044</h3>
+                            <p class="product-subtitle">Köşe Askısı 40 x 50</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Köşe Askısı</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">1.2mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak:</span>
+                                    <span class="spec-value">2</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği:</span>
+                                    <span class="spec-value">6</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yükseklik:</span>
+                                    <span class="spec-value">40mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak Ölçüsü:</span>
+                                    <span class="spec-value">50mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,025kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 4053 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-172-300x300.jpeg.webp" alt="Adam Hall Hardware 4053">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 4053</h3>
+                            <p class="product-subtitle">Köşe Askısı 42 x 52</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Köşe Askısı</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">1.2mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak:</span>
+                                    <span class="spec-value">2</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği:</span>
+                                    <span class="spec-value">6</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yükseklik:</span>
+                                    <span class="spec-value">42mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak Ölçüsü:</span>
+                                    <span class="spec-value">50mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,033kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 4124 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-173-300x300.jpeg.webp" alt="Adam Hall Hardware 4124">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 4124</h3>
+                            <p class="product-subtitle">Orta boy, üç ayaklı, kranklı, 30mm Üst Köşe</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Köşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Top Köşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">1.5mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak:</span>
+                                    <span class="spec-value">3</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği:</span>
+                                    <span class="spec-value">3</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Offset Ayak Uzunluğu:</span>
+                                    <span class="spec-value">30mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yükseklik:</span>
+                                    <span class="spec-value">51mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak Ölçüsü:</span>
+                                    <span class="spec-value">51mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,062kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 40431 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-173-300x300.jpeg.webp" alt="Adam Hall Hardware 40431">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 40431</h3>
+                            <p class="product-subtitle">Köşe Askısı 40 x 31</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Köşe askısı</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">1.2mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak:</span>
+                                    <span class="spec-value">2</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği:</span>
+                                    <span class="spec-value">6</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yükseklik:</span>
+                                    <span class="spec-value">40mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak Ölçüsü:</span>
+                                    <span class="spec-value">31mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,025kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 41012 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-174-300x300.jpeg.webp" alt="Adam Hall Hardware 41012">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 41012</h3>
+                            <p class="product-subtitle">Ağır yük tipi, üç ayaklı, Üst Köşe</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Köşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Top Köşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">2mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak:</span>
+                                    <span class="spec-value">3</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği:</span>
+                                    <span class="spec-value">6</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yükseklik:</span>
+                                    <span class="spec-value">65mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak Ölçüsü:</span>
+                                    <span class="spec-value">65mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,12kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 41076 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-174-300x300.jpeg.webp" alt="Adam Hall Hardware 41076">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 41076</h3>
+                            <p class="product-subtitle">Büyük, üç ayaklı, 6 delikli, 30mm Üst Köşe</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Köşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Top Köşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">1.5mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak:</span>
+                                    <span class="spec-value">3</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği:</span>
+                                    <span class="spec-value">6</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Offset Ayak Uzunluğu:</span>
+                                    <span class="spec-value">30mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yükseklik:</span>
+                                    <span class="spec-value">65mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ayak Ölçüsü:</span>
+                                    <span class="spec-value">65mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,099kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kilit Modal -->
+    <div id="kilit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('kilit-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>Kilit Sistemleri</h2>
+            </div>
+            <div class="modal-body">
+                <div class="product-list">
+                    <!-- Adam Hall Hardware 17291S -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-175-300x244.jpeg.webp" alt="Adam Hall Hardware 17291S">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 17291S</h3>
+                            <p class="product-subtitle">Yaylı, kranksız, 12mm derinliğinde orta boy kelebek kilit</p>
+                            <p class="product-description">Kelebek kilidin kapama mekanizması otomatik olarak açılışık pozisyonuna göre 30 derecelik ters baskı yapacak şekilde tasarlanmıştır. İhtiyaç duyulursa kapama kancası daha uzağa konumlandırılabilir.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kilitler</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Kelebek Kilit</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Kitlenebilir:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Tipi:</span>
+                                    <span class="spec-value">Kranksız</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Boyutu:</span>
+                                    <span class="spec-value">Orta</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Derinliği:</span>
+                                    <span class="spec-value">12mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Perçin Koruma:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Dışarı Çekilme Tasarımı:</span>
+                                    <span class="spec-value">Evet</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Düz İtme İşlevi:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,224kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 172511 COMP -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-176-300x244.jpeg.webp" alt="Adam Hall Hardware 172511 COMP">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 172511 COMP</h3>
+                            <p class="product-subtitle">Büyük, kranklı, 14mm derinliğinde kelebek kilit</p>
+                            <p class="product-description">V3,V3, ve V5 modelleri, kancayı yukarı ve aşağıya hareket ettirebilen "push down" mekanizmasına sahiptir. Bu sistem yaralanmaları minimum seviyeye indirir.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kilitler</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Kelebek Kilit</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Kitlenebilir:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Tipi:</span>
+                                    <span class="spec-value">14Kranksız</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Boyutu:</span>
+                                    <span class="spec-value">Büyük</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Derinliği:</span>
+                                    <span class="spec-value">14mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Perçin Koruma:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Dışarı Çekilme Tasarımı:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Düz İtme İşlevi:</span>
+                                    <span class="spec-value">Evet</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,47kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 172572 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-177-300x244.jpeg.webp" alt="Adam Hall Hardware 172572">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 172572</h3>
+                            <p class="product-subtitle">Perçin korumalı, büyük, kranklı, 9mm derinliğinde kelebek kilit</p>
+                            <p class="product-description">V3,V3, ve V5 modelleri, kancayı yukarı ve aşağıya hareket ettirebilen "push down" mekanizmasına sahiptir. Bu sistem yaralanmaları minimum seviyeye indirir.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kilitler</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Kelebek Kilit</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Kitlenebilir:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Tipi:</span>
+                                    <span class="spec-value">Kranklı</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Boyutu:</span>
+                                    <span class="spec-value">Büyük</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Derinliği:</span>
+                                    <span class="spec-value">9mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Perçin Koruma:</span>
+                                    <span class="spec-value">Evet</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Dışarı Çekilme Tasarımı:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Düz İtme İşlevi:</span>
+                                    <span class="spec-value">Evet</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,384kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kulp Modal -->
+    <div id="kulp-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('kulp-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>Kulp Sistemleri</h2>
+            </div>
+            <div class="modal-body">
+                <div class="product-list">
+                    <!-- Adam Hall Hardware 34082 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-178-300x300.jpeg.webp" alt="Adam Hall Hardware 34082">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 34082</h3>
+                            <p class="product-subtitle">8mm derinliğinde plakaya gömme, orta boy yaylı kulp</p>
+                            <p class="product-description">Geniş tutamaç ve güçlendirilmiş plakalı 8mm derinliğinde yaylı kulp.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kulp</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Katlanabilir Kulp</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Çapı:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Yüksekliği:</span>
+                                    <span class="spec-value">100mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Genişliği:</span>
+                                    <span class="spec-value">155mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Derinliği:</span>
+                                    <span class="spec-value">8mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tutamaç Malzeme:</span>
+                                    <span class="spec-value">PVC</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tutamaç Renk:</span>
+                                    <span class="spec-value">Siyah</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,348kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 34482 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-179-300x300.jpeg.webp" alt="Adam Hall Hardware 34482">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 34482</h3>
+                            <p class="product-subtitle">Çinko Kaplama Yaylı Kulp</p>
+                            <p class="product-description">Yüzeye montaj edilebilen, siyah pvc tutamaçlı kulp.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kulp</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Katlanabilir Kulp</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Çapı:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Yüksekliği:</span>
+                                    <span class="spec-value">82mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Genişliği:</span>
+                                    <span class="spec-value">155mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tutamaç Malzeme:</span>
+                                    <span class="spec-value">PVC</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tutamaç Renk:</span>
+                                    <span class="spec-value">Siyah</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,26kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menteşe Modal -->
+    <div id="mentese-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('mentese-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>Menteşe Sistemleri</h2>
+            </div>
+            <div class="modal-body">
+                <div class="product-list">
+                    <!-- Adam Hall Hardware 2640 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-180-300x300.jpeg.webp" alt="Adam Hall Hardware 2640">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 2640</h3>
+                            <p class="product-subtitle">L tipi çinko kaplama menteşe</p>
+                            <p class="product-description">2602 menteşe ve 40431 iki köşeli askının birleşimidir.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kapaklı destekli menteşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Menteşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Çapı:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">1.5mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Genişlik:</span>
+                                    <span class="spec-value">100mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yükseklik:</span>
+                                    <span class="spec-value">38mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,098kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 27095 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-181-300x300.jpeg.webp" alt="Adam Hall Hardware 27095">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 27095</h3>
+                            <p class="product-subtitle">Plakaya monte edilmiş kapak desteği</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kapaklı destekli menteşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Kapak Destekli</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Çapı:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Click Stop:</span>
+                                    <span class="spec-value">Yok</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Ölçüsü:</span>
+                                    <span class="spec-value">Orta</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Derinliği:</span>
+                                    <span class="spec-value">8mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,22kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 270838 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-182-300x300.jpeg.webp" alt="Adam Hall Hardware 270838">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 270838</h3>
+                            <p class="product-subtitle">Kapak destekli, perçin korumalı, click-stop fonksiyonlu menteşe</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kapaklı destekli menteşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Menteşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Yüzeyi:</span>
+                                    <span class="spec-value">Çinko</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Tipi:</span>
+                                    <span class="spec-value">Kranklı</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Boyutu:</span>
+                                    <span class="spec-value">Büyük</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Derinliği:</span>
+                                    <span class="spec-value">10mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Çapı:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Perçin Koruması:</span>
+                                    <span class="spec-value">Var</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Genişlik:</span>
+                                    <span class="spec-value">100mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yükseklik:</span>
+                                    <span class="spec-value">38mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,411kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plaka Modal -->
+    <div id="plaka-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('plaka-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>Plaka Sistemleri</h2>
+            </div>
+            <div class="modal-body">
+                <div class="product-list">
+                    <!-- Adam Hall Hardware 38083 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-183-300x300.jpeg.webp" alt="Adam Hall Hardware 38083">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 38083</h3>
+                            <p class="product-subtitle">Çinko Kaplama Çelik Tekerlek Plağı</p>
+                            <p class="product-description">Case'in yerden 100mm yükselmesini sağlamak için kasa kapağına monte edilen tekerlek plak.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Çelik Tekerlek Plak</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">1.5mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Yüksekliği:</span>
+                                    <span class="spec-value">90mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Genişliği:</span>
+                                    <span class="spec-value">136mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Derinliği:</span>
+                                    <span class="spec-value">27mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,169kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 88001 -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-184-300x300.jpeg.webp" alt="Adam Hall Hardware 88001">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 88001</h3>
+                            <p class="product-subtitle">Kendinden Yapışkanlı Turne Etiketi 177x127mm</p>
+                            <p class="product-description">Beyaz, kendinden yapışkanlı tur etiketi. Yüzeyi koruyucu folyo ile kaplıdır. Baskısı solmadan kolayca temizlenebilir ve yeniden kullanılabilir.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Etiket</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Uzunluk:</span>
+                                    <span class="spec-value">177mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Genişlik:</span>
+                                    <span class="spec-value">127mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,03kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware 88001 D -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-185-300x300.jpeg.webp" alt="Adam Hall Hardware 88001 D">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware 88001 D</h3>
+                            <p class="product-subtitle">88001 Turne etiketi için Plaka</p>
+                            <p class="product-description">88001 Tour Label için Plaka</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Gömme Tekerlek Plakası</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">Çelik</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Yüzey:</span>
+                                    <span class="spec-value">Çinko Kaplama</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Gümüş</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme Kalınlığı:</span>
+                                    <span class="spec-value">1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Montaj Deliği Ölçüsü:</span>
+                                    <span class="spec-value">5.1mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Yüksekliği:</span>
+                                    <span class="spec-value">170mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Genişliği:</span>
+                                    <span class="spec-value">220mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Plaka Derinliği:</span>
+                                    <span class="spec-value">6mm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,314kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plastik Köşeler Modal -->
+    <div id="plastik-kose-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('plastik-kose-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>Plastik Köşeler</h2>
+            </div>
+            <div class="modal-body">
+                <div class="product-list">
+                    <!-- Adam Hall Hardware Q 4502 FDG -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-186-300x300.jpeg.webp" alt="Adam Hall Hardware Q 4502 FDG">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware Q 4502 FDG</h3>
+                            <p class="product-subtitle">Koyu Gri, Dişi Köşe</p>
+                            <p class="product-description">EasyCase Alüminyüm sisteminde plastik köşeler birbirine kenetlenir. Perçin gerektirmeden kasaların hızlı bir şekilde monte edilmesini sağlar.</p>
+                            <p class="product-description">Köşeler, ekstrüzyonlar ve 7 mm ahşap veya plastik malzemeler, basınçlı havalı Tacker ve 6 mm çift tırnaklı çivi kullanılarak kolayca birbirine yapıştırılabilir.</p>
+                            <p class="product-description">7 mm malzeme için EasyCase Alüminyum Ekstrüzyonlar, öğütülmüş veya anotlanmış (A) olarak mevcuttur. EasyCase plastik köşeleri siyah ve üç farklı gri tonda mevcuttur.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kolay Taşıma Sistemleri</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Köşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">PA6</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Siyah</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,0184kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adam Hall Hardware Q 4506 BLK -->
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="https://argostr.com/wp-content/uploads/2023/09/1-187-300x300.jpeg.webp" alt="Adam Hall Hardware Q 4506 BLK">
+                        </div>
+                        <div class="product-details">
+                            <h3>Adam Hall Hardware Q 4506 BLK</h3>
+                            <p class="product-subtitle">Siyah Casemaker Köşe</p>
+                            <p class="product-description">EasyCase Alüminyüm sisteminde plastik köşeler birbirine kenetlenir. Perçin gerektirmeden kasaların hızlı bir şekilde monte edilmesini sağlar.</p>
+                            <p class="product-description">Köşeler, ekstrüzyonlar ve 7 mm ahşap veya plastik malzemeler, basınçlı havalı Tacker ve 6 mm çift tırnaklı çivi kullanılarak kolayca birbirine yapıştırılabilir.</p>
+                            <p class="product-description">7 mm malzeme için EasyCase Alüminyum Ekstrüzyonlar, öğütülmüş veya anotlanmış (A) olarak mevcuttur. EasyCase plastik köşeleri siyah ve üç farklı gri tonda mevcuttur.</p>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ürün Türü:</span>
+                                    <span class="spec-value">Kolay Taşıma Sistemleri</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Tip:</span>
+                                    <span class="spec-value">Köşe</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Malzeme:</span>
+                                    <span class="spec-value">PA6</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Renk:</span>
+                                    <span class="spec-value">Siyah</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ağırlık:</span>
+                                    <span class="spec-value">0,0184kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ARGOS</h3>
+                    <p>Profesyonel ses ve ışık sistemleri alanında Türkiye'nin önde gelen firmasıdır.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="urunler.html">Ürünler</a></li>
+                        <li><a href="projeler.html">Projeler</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="case-aksesuarlari.html">Case Aksesuarları</a></li>
+                        <li><a href="enerji-panosu-sistemleri.html">Enerji Pano Sistemleri</a></li>
+                        <li><a href="truss-sistemleri.html">Truss Sistemleri</a></li>
+                        <li><a href="ses-sistemleri.html">Ses Sistemleri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +90 212 222 07 50</p>
+                        <p><i class="fas fa-envelope"></i> info@argostr.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Argos | Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podyum Sistemleri - Argos</title>
+    <meta name="description" content="Profesyonel podyum sistemleri - Argos">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        header .theme-switch,
+        header .theme-switch *,
+        header .theme-switch-label,
+        header input[type="checkbox"]#theme-toggle,
+        header label[for="theme-toggle"] {
+            display: none !important;
+        }
+
+        /* Lightbox Stili */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            text-align: center;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            margin-top: 2%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Modal ana görsel için pointer cursor */
+        .modal-main-image {
+            cursor: zoom-in;
+        }
+
+        /* Diğer stiller */
+        .modal-gallery.full-width {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .modal-gallery.full-width .modal-main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            background: #f5f5f5;
+        }
+
+        .modal-gallery .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .modal-gallery .gallery-grid img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-gallery .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-gallery .gallery-grid img.active {
+            border: 2px solid #007bff;
+        }
+
+        @media (max-width: 768px) {
+            .modal-gallery.full-width .modal-main-image {
+                height: 300px;
+            }
+            
+            .modal-gallery .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                max-height: 300px;
+            }
+            
+            .modal-gallery .gallery-grid img {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Duman Efekti -->
+    <div class="smoke-container">
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h2>ARGOS</h2>
+                    </a>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Anasayfa</a>
+                    <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+                    <div class="nav-dropdown">
+                        <a href="urunler.html" class="nav-link dropdown-toggle">
+                            Ürünler <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="altyapi-sistemleri.html" class="dropdown-link">
+                                <span>Altyapı Sistemleri</span>
+                            </a>
+                            <a href="hard-case-sistemleri.html" class="dropdown-link">
+                                <span>Hard Case Sistemleri</span>
+                            </a>
+                            <a href="case-aksesuarlari.html" class="dropdown-link">
+                                <span>Case Aksesuarları</span>
+                            </a>
+                            <a href="enerji-panosu-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panosu Sistemleri</span>
+                            </a>
+                            <a href="enerji-box-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Box Sistemleri</span>
+                            </a>
+                            <a href="enerji-panel-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panel Sistemleri</span>
+                            </a>
+                            <a href="motor-kumanda-sistemleri.html" class="dropdown-link">
+                                <span>Motor Kumanda Sistemleri</span>
+                            </a>
+                            <a href="podyum-sistemleri.html" class="dropdown-link">
+                                <span>Podyum Sistemleri</span>
+                            </a>
+                            <a href="ses-sistemleri.html" class="dropdown-link">
+                                <span>Ses Sistemleri</span>
+                            </a>
+                            <a href="isik-sistemleri.html" class="dropdown-link">
+                                <span>Işık Sistemleri</span>
+                            </a>
+                            <a href="goruntu-sistemleri.html" class="dropdown-link">
+                                <span>Görüntü Sistemleri</span>
+                            </a>
+                            <a href="truss-sistemleri.html" class="dropdown-link">
+                                <span>Truss Sistemleri</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="projeler.html" class="nav-link">Projeler</a>
+                    <a href="iletisim.html" class="nav-link">İletişim</a>
+                    <a href="sunum.html" class="nav-link">Sunum</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pure-project-header">
+        <div class="container">
+            <div class="project-header-content pure">
+                <h1 class="project-title pure">Podyum Sistemleri</h1>
+                <p class="project-subtitle pure">Profesyonel sahne podyumu ve platform çözümleri</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <!-- Filmli Podyum -->
+                <div class="gallery-card" data-modal="modal-filmli-podyum">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/16-768x384.png.webp" alt="Filmli Podyum" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Filmli Podyum</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ham Podyum -->
+                <div class="gallery-card" data-modal="modal-ham-podyum">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/7-768x384.png.webp" alt="Ham Podyum" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Ham Podyum</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desenli Podyum -->
+                <div class="gallery-card" data-modal="modal-desenli-podyum">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/16-768x384.png.webp" alt="Desenli Podyum" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Desenli Podyum</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Podyum Aksesuarları -->
+                <div class="gallery-card" data-modal="modal-podyum-aksesuarlari">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/4-26.jpeg" alt="Podyum Aksesuarları" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Podyum Aksesuarları</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Podyum Galerisi -->
+                <div class="gallery-card" data-modal="modal-podyum-galeri">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/1-3-300x200.jpeg.webp" alt="Podyum Galerisi" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Podyum Galerisi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detail Modals -->
+    <!-- Filmli Podyum Modal -->
+    <div id="modal-filmli-podyum" class="detail-modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="modal-filmli-podyum">&times;</span>
+            <div class="modal-header">
+                <h2>Filmli Podyum</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-gallery">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/3-89-300x225.jpeg.webp" alt="Filmli Podyum" class="modal-main-image">
+                    <div class="modal-thumbnails">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/3-89-300x225.jpeg.webp" alt="Filmli Podyum Görünüm 1" class="modal-thumbnail active" onclick="changeModalImage(this, 'modal-filmli-podyum', 0)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/2-1-300x225.jpg.webp" alt="Filmli Podyum Görünüm 2" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-filmli-podyum', 1)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-151-300x225.jpeg.webp" alt="Filmli Podyum Görünüm 3" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-filmli-podyum', 2)">
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h3>Argos PL Filmli Tırtıklı Desenli Podyum</h3>
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Çerçeve:</span>
+                            <span class="modal-info-value">9 cm x 3,5 cm</span>
+                </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Kalınlık:</span>
+                            <span class="modal-info-value">4,5 mm</span>
+            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Ağırlık:</span>
+                            <span class="modal-info-value">100 cm x 200 cm / 32 Kg</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Malzeme:</span>
+                            <span class="modal-info-value">Alüminyum ve 18 mm Birch plywood Kontraplak (Suya Dayanıklı Huş)</span>
+                        </div>
+                    </div>
+
+                    <h3>LongTerm LF Filmli Tırtıklı Desenli Podyum</h3>
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Çerçeve:</span>
+                            <span class="modal-info-value">8,5 cm x 4 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Kalınlık:</span>
+                            <span class="modal-info-value">4,5 mm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Ağırlık:</span>
+                            <span class="modal-info-value">100 cm x 200 cm / 28 Kg</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Malzeme:</span>
+                            <span class="modal-info-value">Alüminyum ve 12 mm Birch plywood Kontraplak (Suya Dayanıklı Huş)</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Alt Kayıt:</span>
+                            <span class="modal-info-value">3 adet 4 cm x 2 cm</span>
+                        </div>
+                    </div>
+
+                    <h3>Sipariş Ürün Kodları</h3>
+                    <div class="modal-info-grid product-codes">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PF100X100:</span>
+                            <span class="modal-info-value">100 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PF100X200:</span>
+                            <span class="modal-info-value">100 x 200 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PF50X100:</span>
+                            <span class="modal-info-value">50 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PF50X200:</span>
+                            <span class="modal-info-value">50 x 200 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PF40X100:</span>
+                            <span class="modal-info-value">40 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PF40X200:</span>
+                            <span class="modal-info-value">40 x 200 cm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ham Podyum Modal -->
+    <div id="modal-ham-podyum" class="detail-modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="modal-ham-podyum">&times;</span>
+            <div class="modal-header">
+                <h2>Ham Podyum</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-gallery">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/1-152-768x576.jpeg.webp" alt="Ham Podyum" class="modal-main-image">
+                    <div class="modal-thumbnails">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-152-768x576.jpeg.webp" alt="Argos PL Podyum Görünüm 1" class="modal-thumbnail active" onclick="changeModalImage(this, 'modal-ham-podyum', 0)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/2-148-768x576.jpeg.webp" alt="Argos PL Podyum Görünüm 2" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-ham-podyum', 1)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/3-90-768x576.jpeg.webp" alt="Argos PL Podyum Görünüm 3" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-ham-podyum', 2)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-153-300x225.jpeg.webp" alt="LongTerm LF Podyum Görünüm 1" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-ham-podyum', 3)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/2-149-300x225.jpeg.webp" alt="LongTerm LF Podyum Görünüm 2" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-ham-podyum', 4)">
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h3>Argos PL Podyum</h3>
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Çerçeve:</span>
+                            <span class="modal-info-value">9 cm x 3,5 cm</span>
+                </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Kalınlık:</span>
+                            <span class="modal-info-value">4,5 mm</span>
+            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Ağırlık:</span>
+                            <span class="modal-info-value">100 cm x 200 cm / 32 Kg</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Malzeme:</span>
+                            <span class="modal-info-value">Alüminyum ve 18 mm Birch plywood Kontraplak (Suya Dayanıklı Huş)</span>
+                        </div>
+                    </div>
+
+                    <h3>LongTerm LF Podyum</h3>
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Çerçeve:</span>
+                            <span class="modal-info-value">8,5 cm x 4 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Kalınlık:</span>
+                            <span class="modal-info-value">4,5 mm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Ağırlık:</span>
+                            <span class="modal-info-value">100 cm x 200 cm / 28 Kg</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Malzeme:</span>
+                            <span class="modal-info-value">Alüminyum ve 12 mm Birch plywood Kontraplak (Suya Dayanıklı Huş)</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Alt Kayıt:</span>
+                            <span class="modal-info-value">3 adet 4 cm x 2 cm</span>
+                        </div>
+                    </div>
+
+                    <h3>Sipariş Ürün Kodları</h3>
+                    <div class="modal-info-grid product-codes">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PH100X100:</span>
+                            <span class="modal-info-value">100 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PH100X200:</span>
+                            <span class="modal-info-value">100 x 200 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PH50X100:</span>
+                            <span class="modal-info-value">50 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PH50X200:</span>
+                            <span class="modal-info-value">50 x 200 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PH40X100:</span>
+                            <span class="modal-info-value">40 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PH40X200:</span>
+                            <span class="modal-info-value">40 x 200 cm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desenli Podyum Modal -->
+    <div id="modal-desenli-podyum" class="detail-modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="modal-desenli-podyum">&times;</span>
+            <div class="modal-header">
+                <h2>Desenli Podyum</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-gallery">
+                    <img src="https://argostr.com/wp-content/uploads/2023/10/1-1-300x225.jpeg.webp" alt="Desenli Podyum" class="modal-main-image">
+                    <div class="modal-thumbnails">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/1-1-300x225.jpeg.webp" alt="Bal Peteği Desenli Podyum Görünüm 1" class="modal-thumbnail active" onclick="changeModalImage(this, 'modal-desenli-podyum', 0)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/2-147-300x225.jpeg.webp" alt="Bal Peteği Desenli Podyum Görünüm 2" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-desenli-podyum', 1)">
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h3>Argos PL Bal Peteği Desenli Podyum</h3>
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Çerçeve:</span>
+                            <span class="modal-info-value">9 cm x 3,5 cm</span>
+                </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Kalınlık:</span>
+                            <span class="modal-info-value">4,5 mm</span>
+            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Ağırlık:</span>
+                            <span class="modal-info-value">100 cm x 200 cm / 32 Kg</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Malzeme:</span>
+                            <span class="modal-info-value">Alüminyum ve 18 mm Birch plywood Kontraplak (Suya Dayanıklı Huş)</span>
+                        </div>
+                    </div>
+
+                    <h3>LongTerm LF Bal Peteği Desenli Podyum</h3>
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Çerçeve:</span>
+                            <span class="modal-info-value">8,5 cm x 4 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Kalınlık:</span>
+                            <span class="modal-info-value">4,5 mm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Ağırlık:</span>
+                            <span class="modal-info-value">100 cm x 200 cm / 28 Kg</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Malzeme:</span>
+                            <span class="modal-info-value">Alüminyum ve 12 mm Birch plywood Kontraplak (Suya Dayanıklı Huş)</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Alt Kayıt:</span>
+                            <span class="modal-info-value">3 adet 4 cm x 2 cm</span>
+                        </div>
+                    </div>
+
+                    <h3>Sipariş Ürün Kodları</h3>
+                    <div class="modal-info-grid product-codes">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PB100X100:</span>
+                            <span class="modal-info-value">100 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PB100X200:</span>
+                            <span class="modal-info-value">100 x 200 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PB50X100:</span>
+                            <span class="modal-info-value">50 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PB50X200:</span>
+                            <span class="modal-info-value">50 x 200 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PB40X100:</span>
+                            <span class="modal-info-value">40 x 100 cm</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PB40X200:</span>
+                            <span class="modal-info-value">40 x 200 cm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Podyum Aksesuarları Modal -->
+    <div id="modal-podyum-aksesuarlari" class="detail-modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="modal-podyum-aksesuarlari">&times;</span>
+            <div class="modal-header">
+                <h2>Podyum Aksesuarları</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-gallery">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/1-154-768x576.jpeg.webp" alt="Podyum Aksesuarları" class="modal-main-image">
+                    <div class="modal-thumbnails">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-154-768x576.jpeg.webp" alt="Podyum Aksesuarları Görünüm 1" class="modal-thumbnail active" onclick="changeModalImage(this, 'modal-podyum-aksesuarlari', 0)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/2-150-768x576.jpeg.webp" alt="Podyum Aksesuarları Görünüm 2" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-aksesuarlari', 1)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/3-91-768x576.jpeg.webp" alt="Podyum Aksesuarları Görünüm 3" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-aksesuarlari', 2)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/4-26-768x576.jpeg.webp" alt="Podyum Aksesuarları Görünüm 4" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-aksesuarlari', 3)">
+                        </div>
+                        </div>
+                <div class="modal-info">
+                        <h3>Podyum Ayağı Özellikleri</h3>
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Profil:</span>
+                            <span class="modal-info-value">55mm x 55mm x 2mm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">Ağırlık:</span>
+                            <span class="modal-info-value">100cm x /1,15Kg</span>
+                        </div>
+                    </div>
+
+                        <h3>Sabit Podyum Ayakları</h3>
+                    <div class="modal-info-grid product-codes">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL20:</span>
+                            <span class="modal-info-value">55×55 mm H:20 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL25:</span>
+                            <span class="modal-info-value">55×55 mm H:25 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL40:</span>
+                            <span class="modal-info-value">55×55 mm H:40 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL50:</span>
+                            <span class="modal-info-value">55×55 mm H:50 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL60:</span>
+                            <span class="modal-info-value">55×55 mm H:60 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL75:</span>
+                            <span class="modal-info-value">55×55 mm H:75 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL80:</span>
+                            <span class="modal-info-value">55×55 mm H:80 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL100:</span>
+                            <span class="modal-info-value">55×55 mm H:100 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL120:</span>
+                            <span class="modal-info-value">55×55 mm H:120 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL125:</span>
+                            <span class="modal-info-value">55×55 mm H:125 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL150:</span>
+                            <span class="modal-info-value">55×55 mm H:150 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL160:</span>
+                            <span class="modal-info-value">55×55 mm H:160 cm</span>
+                        </div>
+                    </div>
+
+                        <h3>Teleskopik Podyum Ayakları</h3>
+                    <div class="modal-info-grid product-codes">
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PTL4060:</span>
+                            <span class="modal-info-value">55×55 mm H:40-60 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PTL5080:</span>
+                            <span class="modal-info-value">55×55 mm H:50-80 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PTL80140:</span>
+                            <span class="modal-info-value">55×55 mm H:80-140 cm</span>
+                            </div>
+                        <div class="modal-info-item">
+                            <span class="modal-info-label">PL100180:</span>
+                            <span class="modal-info-value">55×55 mm H:100-180 cm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Podyum Galerisi Modal -->
+    <div id="modal-podyum-galeri" class="detail-modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="modal-podyum-galeri">&times;</span>
+            <div class="modal-header">
+                <h2>Podyum Galerisi</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-gallery full-width">
+                    <img src="https://argostr.com/wp-content/uploads/2023/10/1-3-300x200.jpeg.webp" alt="Podyum Galerisi" class="modal-main-image">
+                    <div class="modal-thumbnails gallery-grid">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/1-3-300x200.jpeg.webp" alt="Podyum Görünüm 1" class="modal-thumbnail active" onclick="changeModalImage(this, 'modal-podyum-galeri', 0)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/2-2-300x200.jpeg.webp" alt="Podyum Görünüm 2" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 1)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/3-2-300x180.jpeg.webp" alt="Podyum Görünüm 3" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 2)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/4-1-300x180.jpeg.webp" alt="Podyum Görünüm 4" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 3)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/5-2-180x300.jpeg.webp" alt="Podyum Görünüm 5" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 4)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/6-2-300x180.jpeg.webp" alt="Podyum Görünüm 6" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 5)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/7-1-300x180.jpeg.webp" alt="Podyum Görünüm 7" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 6)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/8-1-300x180.jpeg.webp" alt="Podyum Görünüm 8" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 7)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/10-180x300.jpeg.webp" alt="Podyum Görünüm 9" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 8)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/11-300x180.jpeg.webp" alt="Podyum Görünüm 10" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 9)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/12-180x300.jpeg.webp" alt="Podyum Görünüm 11" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 10)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/13-300x200.jpeg.webp" alt="Podyum Görünüm 12" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 11)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/14-300x225.jpeg.webp" alt="Podyum Görünüm 13" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 12)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/15-300x225.jpeg.webp" alt="Podyum Görünüm 14" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 13)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/16-300x225.jpeg.webp" alt="Podyum Görünüm 15" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 14)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/17-300x225.jpeg.webp" alt="Podyum Görünüm 16" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 15)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/18-300x225.jpeg.webp" alt="Podyum Görünüm 17" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 16)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/19-300x225.jpeg.webp" alt="Podyum Görünüm 18" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 17)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/20-300x225.jpeg.webp" alt="Podyum Görünüm 19" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 18)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/21-300x225.jpeg.webp" alt="Podyum Görünüm 20" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 19)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/22-300x225.jpeg.webp" alt="Podyum Görünüm 21" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 20)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/23-300x225.jpeg.webp" alt="Podyum Görünüm 22" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 21)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/24-300x225.jpeg.webp" alt="Podyum Görünüm 23" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 22)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/25-300x225.jpeg.webp" alt="Podyum Görünüm 24" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 23)">
+                        <img src="https://argostr.com/wp-content/uploads/2023/10/26-300x300.jpeg.webp" alt="Podyum Görünüm 25" class="modal-thumbnail" onclick="changeModalImage(this, 'modal-podyum-galeri', 24)">
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Podyum Sistemleri Hakkında Bilgi Almak İster misiniz?</h2>
+                <p>Uzman ekibimizle iletişime geçin, etkinliğinize uygun podyum çözümlerini keşfedin.</p>
+                <a href="iletisim.html" class="cta-button">İletişime Geçin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ARGOS</h3>
+                    <p>Profesyonel ses ve ışık sistemleri alanında Türkiye'nin önde gelen firmasıdır.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="urunler.html">Ürünler</a></li>
+                        <li><a href="projeler.html">Projeler</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="podyum-sistemleri.html">Podyum Sistemleri</a></li>
+                        <li><a href="enerji-panosu-sistemleri.html">Enerji Pano Sistemleri</a></li>
+                        <li><a href="truss-sistemleri.html">Truss Sistemleri</a></li>
+                        <li><a href="ses-sistemleri.html">Ses Sistemleri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +90 212 222 07 50</p>
+                        <p><i class="fas fa-envelope"></i> info@argostr.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Argos | Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Modal açma ve kapama fonksiyonları
+        function openDetailModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeDetailModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Sayfa yüklendiğinde
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tüm gallery card'ları seç
+            const galleryCards = document.querySelectorAll('.gallery-card');
+            
+            // Her karta tıklama olayı ekle
+            galleryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    if (modalId) {
+                        openDetailModal(modalId);
+                    }
+                });
+            });
+            
+            // Tüm modal kapatma butonlarına tıklama olayı ekle
+            const closeButtons = document.querySelectorAll('.modal-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    if (modalId) {
+                        closeDetailModal(modalId);
+                    }
+                });
+            });
+
+            // Modal dışına tıklama ile kapatma
+            const modals = document.querySelectorAll('.detail-modal');
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeDetailModal(this.id);
+            }
+                });
+        });
+        
+            // ESC tuşu ile kapatma
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const openModals = document.querySelectorAll('.detail-modal[style*="display: block"]');
+                openModals.forEach(modal => {
+                        closeDetailModal(modal.id);
+                    });
+            }
+        });
+
+            // Lightbox fonksiyonları
+            function openLightbox(imgSrc) {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                
+                lightboxImg.src = imgSrc;
+                lightbox.style.display = 'flex';
+            }
+
+            function closeLightbox() {
+                document.getElementById('lightbox').style.display = 'none';
+            }
+
+            // Lightbox kapatma butonuna tıklama
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            
+            // Lightbox dışına tıklama ile kapatma
+            document.getElementById('lightbox').addEventListener('click', function(e) {
+                if(e.target === this) {
+                    closeLightbox();
+                }
+            });
+            
+            // Tüm modal ana görsellerine tıklama olayı ekleme
+            const mainImages = document.querySelectorAll('.modal-main-image');
+            mainImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    openLightbox(this.src);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+ 

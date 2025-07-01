@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunum - Arg&se</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Kitap Tasarımı CSS */
+        .book-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            min-height: 70vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        .book {
+            width: 1000px;
+            height: 650px;
+            position: relative;
+            perspective: 1500px;
+            margin: 0 auto;
+        }
+
+        .book-page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-origin: left center;
+            transition: transform 0.5s ease-in-out;
+            cursor: pointer;
+            display: none;
+        }
+
+        .book-page.active {
+            display: block;
+            z-index: 2;
+        }
+
+        .book-page.next {
+            display: block;
+            z-index: 1;
+        }
+
+        .book-page img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .page-controls {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #0056b3;
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .page-number {
+            font-weight: 500;
+            color: #666;
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .book {
+                width: 95vw;
+                height: 70vh;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .book {
+                width: 98vw;
+                height: 60vh;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        header .theme-switch,
+        header .theme-switch *,
+        header .theme-switch-label {
+            display: none !important;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Duman Efekti -->
+    <div class="smoke-container">
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h2>ARGOS</h2>
+                    </a>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Anasayfa</a>
+                    <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+                    <div class="nav-dropdown">
+                        <a href="urunler.html" class="nav-link dropdown-toggle">
+                            Ürünler <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="altyapi-sistemleri.html" class="dropdown-link">
+                                <span>Altyapı Sistemleri</span>
+                            </a>
+                            <a href="hard-case-sistemleri.html" class="dropdown-link">
+                                <span>Hard Case Sistemleri</span>
+                            </a>
+                            <a href="case-aksesuarlari.html" class="dropdown-link">
+                                <span>Case Aksesuarları</span>
+                            </a>
+                            <a href="enerji-panosu-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panosu Sistemleri</span>
+                            </a>
+                            <a href="enerji-box-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Box Sistemleri</span>
+                            </a>
+                            <a href="enerji-panel-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panel Sistemleri</span>
+                            </a>
+                            <a href="motor-kumanda-sistemleri.html" class="dropdown-link">
+                                <span>Motor Kumanda Sistemleri</span>
+                            </a>
+                            <a href="podyum-sistemleri.html" class="dropdown-link">
+                                <span>Podyum Sistemleri</span>
+                            </a>
+                            <a href="ses-sistemleri.html" class="dropdown-link">
+                                <span>Ses Sistemleri</span>
+                            </a>
+                            <a href="isik-sistemleri.html" class="dropdown-link">
+                                <span>Işık Sistemleri</span>
+                            </a>
+                            <a href="goruntu-sistemleri.html" class="dropdown-link">
+                                <span>Görüntü Sistemleri</span>
+                            </a>
+                            <a href="truss-sistemleri.html" class="dropdown-link">
+                                <span>Truss Sistemleri</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="projeler.html" class="nav-link">Projeler</a>
+                    <a href="iletisim.html" class="nav-link">İletişim</a>
+                    <a href="sunum.html" class="nav-link active">Sunum</a>
+                </div>
+                <div class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <label for="theme-toggle" class="theme-switch-label">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </label>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="pure-project-header">
+            <div class="container">
+                <div class="project-header-content pure">
+                    <h1 class="project-title pure">SUNUM</h1>
+                    <p class="project-subtitle pure">Arg&se Ses ve Işık Sistemleri Tanıtımı</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="book-container">
+            <div class="book" id="book">
+                <!-- Sayfalar JavaScript ile eklenecek -->
+            </div>
+            <div class="page-controls">
+                <div class="nav-buttons">
+                    <button class="nav-button" onclick="prevPage()">Önceki</button>
+                    <span class="page-number">Sayfa <span id="currentPage">1</span> / <span id="totalPages">33</span></span>
+                    <button class="nav-button" onclick="nextPage()">Sonraki</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Arg&se</h3>
+                    <p>Profesyonel ses ve ışık sistemleri</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="urunler.html">Ürünler</a></li>
+                        <li><a href="projeler.html">Projeler</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="urunler.html">Case Sistemleri</a></li>
+                        <li><a href="urunler.html">Enerji Pano Sistemleri</a></li>
+                        <li><a href="urunler.html">Truss Sistemleri</a></li>
+                        <li><a href="urunler.html">Ses Sistemleri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +90 212 222 07 50</p>
+                        <p><i class="fas fa-envelope"></i> info@argostr.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Arg&se | Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Yönetimi
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function toggleTheme() {
+            document.body.dataset.theme = themeToggle.checked ? 'dark' : 'light';
+            localStorage.setItem('theme', themeToggle.checked ? 'dark' : 'light');
+        }
+
+        // Sayfa yüklendiğinde tema tercihini kontrol et
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            document.body.dataset.theme = currentTheme;
+            themeToggle.checked = currentTheme === 'dark';
+        } else {
+            document.body.dataset.theme = prefersDarkScheme.matches ? 'dark' : 'light';
+            themeToggle.checked = prefersDarkScheme.matches;
+        }
+
+        themeToggle.addEventListener('change', toggleTheme);
+
+        // Mobil Menü
+        const navMenu = document.getElementById('nav-menu');
+        const navToggle = document.getElementById('nav-toggle');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Resim Galerisi Kodları
+        const images = [
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-0-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-1-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-2-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-3-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-4-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-5-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-6-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-7-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-8-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-9-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-10-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-11-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-12-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-13-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-14-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-15-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-16-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-17-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-18-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-19-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-20-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-21-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-22-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-23-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-24-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-25-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-26-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-27-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-28-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-29-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-30-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-31-1024x576.jpg.webp',
+            'https://argostr.com/wp-content/uploads/2023/10/Argos-32-1024x576.jpg.webp'
+        ];
+
+        let currentPage = 0;
+        const book = document.getElementById('book');
+
+        // Sayfaları oluştur
+        function createPages() {
+            images.forEach((image, index) => {
+                const page = document.createElement('div');
+                page.className = 'book-page';
+                page.innerHTML = `<img src="${image}" alt="Sunum Sayfa ${index + 1}">`;
+                page.onclick = () => nextPage();
+                book.appendChild(page);
+            });
+            updatePages();
+        }
+
+        // Sayfa durumunu güncelle
+        function updatePages() {
+            const pages = document.querySelectorAll('.book-page');
+            pages.forEach((page, index) => {
+                page.className = 'book-page';
+                if (index === currentPage) {
+                    page.classList.add('active');
+                } else if (index === currentPage + 1) {
+                    page.classList.add('next');
+                }
+            });
+            document.getElementById('currentPage').textContent = currentPage + 1;
+        }
+
+        // Sonraki sayfaya geç
+        function nextPage() {
+            if (currentPage < images.length - 1) {
+                const activePage = document.querySelector('.book-page.active');
+                activePage.style.transform = 'rotateY(-180deg)';
+                setTimeout(() => {
+                    currentPage++;
+                    updatePages();
+                    activePage.style.transform = '';
+                }, 500);
+            }
+        }
+
+        // Önceki sayfaya geç
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updatePages();
+            }
+        }
+
+        // Sayfaları oluştur
+        createPages();
+    </script>
+</body>
+</html> 

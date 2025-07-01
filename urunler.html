@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürünler - Argos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        header .theme-switch,
+        header .theme-switch *,
+        header .theme-switch-label,
+        header input[type="checkbox"]#theme-toggle,
+        header label[for="theme-toggle"] {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Duman Efekti -->
+    <div class="smoke-container">
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h2>ARGOS</h2>
+                    </a>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Anasayfa</a>
+                    <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+                    <div class="nav-dropdown">
+                        <a href="urunler.html" class="nav-link dropdown-toggle active">
+                            Ürünler <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="altyapi-sistemleri.html" class="dropdown-link">
+                                <span>Altyapı Sistemleri</span>
+                            </a>
+                            <a href="hard-case-sistemleri.html" class="dropdown-link">
+                                <span>Hard Case Sistemleri</span>
+                            </a>
+                            <a href="case-aksesuarlari.html" class="dropdown-link">
+                                <span>Case Aksesuarları</span>
+                            </a>
+                            <a href="enerji-panosu-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panosu Sistemleri</span>
+                            </a>
+                            <a href="enerji-box-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Box Sistemleri</span>
+                            </a>
+                            <a href="enerji-panel-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panel Sistemleri</span>
+                            </a>
+                            <a href="motor-kumanda-sistemleri.html" class="dropdown-link">
+                                <span>Motor Kumanda Sistemleri</span>
+                            </a>
+                            <a href="podyum-sistemleri.html" class="dropdown-link">
+                                <span>Podyum Sistemleri</span>
+                            </a>
+                            <a href="ses-sistemleri.html" class="dropdown-link">
+                                <span>Ses Sistemleri</span>
+                            </a>
+                            <a href="isik-sistemleri.html" class="dropdown-link">
+                                <span>Işık Sistemleri</span>
+                            </a>
+                            <a href="goruntu-sistemleri.html" class="dropdown-link">
+                                <span>Görüntü Sistemleri</span>
+                            </a>
+                            <a href="truss-sistemleri.html" class="dropdown-link">
+                                <span>Truss Sistemleri</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="projeler.html" class="nav-link">Projeler</a>
+                    <a href="iletisim.html" class="nav-link">İletişim</a>
+                    <a href="sunum.html" class="nav-link">Sunum</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header pure-project-header">
+        <div class="smoke-container">
+            <div class="smoke-particle"></div>
+            <div class="smoke-particle"></div>
+            <div class="smoke-particle"></div>
+            <div class="smoke-particle"></div>
+            <div class="smoke-particle"></div>
+        </div>
+        <div class="container">
+            <div class="project-header-content pure">
+                <h1 class="project-title pure">ÜRÜNLERİMİZ</h1>
+                <p class="project-subtitle pure">Profesyonel ses ve ışık sistemleri çözümlerimiz</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="product-categories">
+        <div class="container">
+            <h2 class="section-title">Ürün Kategorileri</h2>
+            <div class="categories-grid">
+                <div class="category-card" id="altyapi-sistemleri">
+                    <h3>Altyapı Sistemleri</h3>
+                    <p>Profesyonel sahne altyapı çözümleri</p>
+                    <ul class="category-features">
+                        <li>Truss Sistemleri</li>
+                        <li>Kabin Sistemleri</li>
+                        <li>Platform Sistemleri</li>
+                        <li>Asma Sistemleri</li>
+                    </ul>
+                </div>
+                <div class="category-card" id="hard-case-sistemleri">
+                    <h3>Hard Case Sistemleri</h3>
+                    <p>Ekipman koruma ve taşıma çözümleri</p>
+                    <ul class="category-features">
+                        <li>ABS Rack Case</li>
+                        <li>Alüminyum Case</li>
+                        <li>Özel Tasarım Case</li>
+                        <li>Taşıma Sistemleri</li>
+                    </ul>
+                </div>
+                <div class="category-card" id="enerji-panosu-sistemleri">
+                    <h3>Enerji Panosu Sistemleri</h3>
+                    <p>Elektrik dağıtım ve kontrol sistemleri</p>
+                    <ul class="category-features">
+                        <li>Güç Dağıtım Panoları</li>
+                        <li>DMX Kontrol Sistemleri</li>
+                        <li>UPS Sistemleri</li>
+                        <li>Kablolama Çözümleri</li>
+                    </ul>
+                </div>
+                <div class="category-card" id="ses-sistemleri">
+                    <h3>Ses Sistemleri</h3>
+                    <p>Profesyonel ses ekipmanları</p>
+                    <ul class="category-features">
+                        <li>Mikrofon Sistemleri</li>
+                        <li>Hoparlör Sistemleri</li>
+                        <li>Mikser Sistemleri</li>
+                        <li>Ses İşleme Üniteleri</li>
+                    </ul>
+                </div>
+                <div class="category-card" id="isik-sistemleri">
+                    <h3>Işık Sistemleri</h3>
+                    <p>Gelişmiş aydınlatma çözümleri</p>
+                    <ul class="category-features">
+                        <li>Clay Paky Scenius</li>
+                        <li>LED Işık Sistemleri</li>
+                        <li>Spot Işıklar</li>
+                        <li>Kontrol Sistemleri</li>
+                    </ul>
+                </div>
+                <div class="category-card" id="goruntu-sistemleri">
+                    <h3>Görüntü Sistemleri</h3>
+                    <p>Video ve görüntü teknolojileri</p>
+                    <ul class="category-features">
+                        <li>Arri D40 D25</li>
+                        <li>Projeksiyon Sistemleri</li>
+                        <li>LED Ekranlar</li>
+                        <li>Video İşleme Üniteleri</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products-section">
+        <div class="container">
+            <h2 class="section-title">Öne Çıkan Ürünler</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3>ABS Rack Case</h3>
+                    <p>Profesyonel ekipman koruma çözümleri</p>
+                    <div class="product-details">
+                        <span class="product-feature">Dayanıklı ABS Malzeme</span>
+                        <span class="product-feature">Özel Tasarım</span>
+                        <span class="product-feature">Kolay Taşıma</span>
+                    </div>
+                    <a href="iletisim.html" class="product-link">Teklif Al</a>
+                </div>
+                <div class="product-card">
+                    <h3>Clay Paky Scenius</h3>
+                    <p>Gelişmiş ışık sistemleri</p>
+                    <div class="product-details">
+                        <span class="product-feature">Yüksek Performans</span>
+                        <span class="product-feature">Profesyonel Kalite</span>
+                        <span class="product-feature">Kolay Kontrol</span>
+                    </div>
+                    <a href="iletisim.html" class="product-link">Teklif Al</a>
+                </div>
+                <div class="product-card">
+                    <h3>Arri D40 D25</h3>
+                    <p>Profesyonel görüntü sistemleri</p>
+                    <div class="product-details">
+                        <span class="product-feature">4K Çözünürlük</span>
+                        <span class="product-feature">Profesyonel Kalite</span>
+                        <span class="product-feature">Gelişmiş Özellikler</span>
+                    </div>
+                    <a href="iletisim.html" class="product-link">Teklif Al</a>
+                </div>
+                <div class="product-card">
+                    <h3>Truss Sistemleri</h3>
+                    <p>Profesyonel sahne altyapısı</p>
+                    <div class="product-details">
+                        <span class="product-feature">Yüksek Dayanıklılık</span>
+                        <span class="product-feature">Modüler Tasarım</span>
+                        <span class="product-feature">Kolay Montaj</span>
+                    </div>
+                    <a href="iletisim.html" class="product-link">Teklif Al</a>
+                </div>
+                <div class="product-card">
+                    <h3>Enerji Panoları</h3>
+                    <p>Güvenli elektrik dağıtımı</p>
+                    <div class="product-details">
+                        <span class="product-feature">Güvenlik Standartları</span>
+                        <span class="product-feature">Kolay Erişim</span>
+                        <span class="product-feature">Profesyonel Tasarım</span>
+                    </div>
+                    <a href="iletisim.html" class="product-link">Teklif Al</a>
+                </div>
+                <div class="product-card">
+                    <h3>Ses Sistemleri</h3>
+                    <p>Profesyonel ses çözümleri</p>
+                    <div class="product-details">
+                        <span class="product-feature">Yüksek Kalite</span>
+                        <span class="product-feature">Geniş Frekans Aralığı</span>
+                        <span class="product-feature">Kolay Kurulum</span>
+                    </div>
+                    <a href="iletisim.html" class="product-link">Teklif Al</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2 class="section-title">Neden Argos?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Kalite Garantisi</h3>
+                    <p>Tüm ürünlerimiz uluslararası kalite standartlarında üretilmektedir.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Teknik Destek</h3>
+                    <p>7/24 teknik destek ve kurulum hizmeti sunuyoruz.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Hızlı Teslimat</h3>
+                    <p>Türkiye genelinde hızlı ve güvenli teslimat hizmeti.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Müşteri Hizmetleri</h3>
+                    <p>Deneyimli ekibimizle her zaman yanınızdayız.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ürünlerimiz Hakkında Bilgi Alın</h2>
+                <p>Profesyonel ses ve ışık sistemleri için bizimle iletişime geçin.</p>
+                <a href="iletisim.html" class="cta-button">İletişime Geç</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Argos</h3>
+                    <p>Profesyonel ses ve ışık sistemleri</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="urunler.html">Ürünler</a></li>
+                        <li><a href="projeler.html">Projeler</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="urunler.html">Case Sistemleri</a></li>
+                        <li><a href="urunler.html">Enerji Pano Sistemleri</a></li>
+                        <li><a href="urunler.html">Truss Sistemleri</a></li>
+                        <li><a href="urunler.html">Ses Sistemleri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +90 212 222 07 50</p>
+                        <p><i class="fas fa-envelope"></i> info@argostr.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Arg&se | Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

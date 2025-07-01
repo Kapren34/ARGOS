@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Kumanda Sistemleri - Argos</title>
+    <meta name="description" content="Profesyonel motor kumanda sistemleri - Argos">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        header .theme-switch,
+        header .theme-switch *,
+        header .theme-switch-label,
+        header input[type="checkbox"]#theme-toggle,
+        header label[for="theme-toggle"] {
+            display: none !important;
+        }
+
+        /* Lightbox Stili */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            text-align: center;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            margin-top: 2%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Modal ana görsel için pointer cursor */
+        .modal-main-image {
+            cursor: zoom-in;
+        }
+
+        /* Diğer stiller */
+        .modal-gallery.full-width {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .modal-gallery.full-width .modal-main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            background: #f5f5f5;
+        }
+
+        .modal-gallery .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .modal-gallery .gallery-grid img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-gallery .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-gallery .gallery-grid img.active {
+            border: 2px solid #007bff;
+        }
+
+        @media (max-width: 768px) {
+            .modal-gallery.full-width .modal-main-image {
+                height: 300px;
+            }
+            
+            .modal-gallery .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                max-height: 300px;
+            }
+            
+            .modal-gallery .gallery-grid img {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Duman Efekti -->
+    <div class="smoke-container">
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h2>ARGOS</h2>
+                    </a>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Anasayfa</a>
+                    <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+                    <div class="nav-dropdown">
+                        <a href="urunler.html" class="nav-link dropdown-toggle active">
+                            Ürünler <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="altyapi-sistemleri.html" class="dropdown-link">
+                                <span>Altyapı Sistemleri</span>
+                            </a>
+                            <a href="hard-case-sistemleri.html" class="dropdown-link">
+                                <span>Hard Case Sistemleri</span>
+                            </a>
+                            <a href="case-aksesuarlari.html" class="dropdown-link">
+                                <span>Case Aksesuarları</span>
+                            </a>
+                            <a href="enerji-panosu-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panosu Sistemleri</span>
+                            </a>
+                            <a href="enerji-box-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Box Sistemleri</span>
+                            </a>
+                            <a href="enerji-panel-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panel Sistemleri</span>
+                            </a>
+                            <a href="motor-kumanda-sistemleri.html" class="dropdown-link">
+                                <span>Motor Kumanda Sistemleri</span>
+                            </a>
+                            <a href="podyum-sistemleri.html" class="dropdown-link">
+                                <span>Podyum Sistemleri</span>
+                            </a>
+                            <a href="ses-sistemleri.html" class="dropdown-link">
+                                <span>Ses Sistemleri</span>
+                            </a>
+                            <a href="isik-sistemleri.html" class="dropdown-link">
+                                <span>Işık Sistemleri</span>
+                            </a>
+                            <a href="goruntu-sistemleri.html" class="dropdown-link">
+                                <span>Görüntü Sistemleri</span>
+                            </a>
+                            <a href="truss-sistemleri.html" class="dropdown-link">
+                                <span>Truss Sistemleri</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="projeler.html" class="nav-link">Projeler</a>
+                    <a href="iletisim.html" class="nav-link">İletişim</a>
+                    <a href="sunum.html" class="nav-link">Sunum</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pure-project-header">
+        <div class="container">
+            <div class="project-header-content pure">
+                <h1 class="project-title pure">Motor Kumanda Sistemleri</h1>
+                <p class="project-subtitle pure">Otomatik motor kontrol ve kumanda çözümleri</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <!-- 24 Kanal Motor Kumanda Panosu -->
+                <div class="gallery-card" data-modal="modal-24-kanal">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/2-84-768x481.jpeg.webp" alt="24 Kanal Motor Kumanda Panosu" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">24 Kanal Motor Kumanda Panosu</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8 Kanal Motor Kumanda Panosu -->
+                <div class="gallery-card" data-modal="modal-8-kanal">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/2-83.jpeg" alt="8 Kanal Motor Kumanda Panosu" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">8 Kanal Motor Kumanda Panosu</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 Kanal Motor Kumanda Panosu -->
+                <div class="gallery-card" data-modal="modal-6-kanal">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/2-80.jpeg" alt="6 Kanal Motor Kumanda Panosu" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">6 Kanal Motor Kumanda Panosu</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- 24 Kanal Motor Kumanda Panosu Modal -->
+    <div class="modal" id="modal-24-kanal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>24 Kanal Motor Kumanda Panosu</h2>
+            <div class="modal-gallery full-width">
+                <img src="https://argostr.com/wp-content/uploads/2023/09/2-84-768x481.jpeg.webp" alt="24 Kanal Motor Kumanda Panosu" class="modal-main-image">
+                <div class="gallery-grid">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/1-86-768x481.jpeg.webp" alt="24 Kanal Motor Kumanda Panosu">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/2-84-768x481.jpeg.webp" alt="24 Kanal Motor Kumanda Panosu" class="active">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/3-56-768x481.jpeg.webp" alt="24 Kanal Motor Kumanda Panosu">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/4-13-768x481.jpeg.webp" alt="24 Kanal Motor Kumanda Panosu">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/5-3-768x481.jpeg.webp" alt="24 Kanal Motor Kumanda Panosu">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/6-1-768x481.jpeg.webp" alt="24 Kanal Motor Kumanda Panosu">
+                </div>
+            </div>
+            <div class="modal-details">
+                <h3>Teknik Özellikler</h3>
+                <ul>
+                    <li>380V/50Hz besleme voltajı</li>
+                    <li>5X125A trifaze erkek fiş girişi</li>
+                    <li>24 adet motor için bağımsız kontrol</li>
+                    <li>1-0-2 butonlar ile yukarı aşağı hassas kontrol</li>
+                    <li>Grup kontrol özelliği</li>
+                    <li>19 Pin socapex konnektör desteği:
+                        <ul>
+                            <li>4 motor için tek kablo bağlantısı</li>
+                            <li>Bölgesel dağılım için çoklu enerji multicore kablo</li>
+                        </ul>
+                    </li>
+                    <li>Acil durum stop butonu</li>
+                    <li>24 kanal için ayrı ayrı termik röle koruması</li>
+                    <li>Her motor için 4x16A çıkış prizi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8 Kanal Motor Kumanda Panosu Modal -->
+    <div class="modal" id="modal-8-kanal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>8 Kanal Motor Kumanda Panosu</h2>
+            <div class="modal-gallery full-width">
+                <img src="https://argostr.com/wp-content/uploads/2023/09/2-83.jpeg" alt="8 Kanal Motor Kumanda Panosu" class="modal-main-image">
+                <div class="gallery-grid">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/1-85-768x481.jpeg.webp" alt="8 Kanal Motor Kumanda Panosu">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/2-83.jpeg" alt="8 Kanal Motor Kumanda Panosu" class="active">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/3-55-768x481.jpeg.webp" alt="8 Kanal Motor Kumanda Panosu">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/4-12-768x481.jpeg.webp" alt="8 Kanal Motor Kumanda Panosu">
+                </div>
+            </div>
+            <div class="modal-details">
+                <h3>Teknik Özellikler</h3>
+                <ul>
+                    <li>380V/50Hz besleme voltajı</li>
+                    <li>5×32 trifaze erkek fiş girişi</li>
+                    <li>8 adet motor için bağımsız kontrol</li>
+                    <li>1-0-2 butonlar ile yukarı aşağı hassas kontrol</li>
+                    <li>Acil durum stop butonu</li>
+                    <li>8 kanal için ayrı ayrı termik röle koruması</li>
+                    <li>Her motor için 4x16A çıkış prizi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6 Kanal Motor Kumanda Panosu Modal -->
+    <div class="modal" id="modal-6-kanal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>6 Kanal Motor Kumanda Panosu</h2>
+            <div class="modal-gallery full-width">
+                <img src="https://argostr.com/wp-content/uploads/2023/09/2-80.jpeg" alt="6 Kanal Motor Kumanda Panosu" class="modal-main-image">
+                <div class="gallery-grid">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/1-82-768x481.jpeg.webp" alt="6 Kanal Motor Kumanda Panosu">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/2-80.jpeg" alt="6 Kanal Motor Kumanda Panosu" class="active">
+                    <img src="https://argostr.com/wp-content/uploads/2023/09/3-54-768x481.jpeg.webp" alt="6 Kanal Motor Kumanda Panosu">
+                </div>
+            </div>
+            <div class="modal-details">
+                <h3>Teknik Özellikler</h3>
+                <ul>
+                    <li>380V/50Hz besleme voltajı</li>
+                    <li>5×32 trifaze erkek fiş girişi</li>
+                    <li>6 adet motor için bağımsız kontrol</li>
+                    <li>1-0-2 butonlar ile yukarı aşağı hassas kontrol</li>
+                    <li>Acil durum stop butonu</li>
+                    <li>6 kanal için ayrı ayrı termik röle koruması</li>
+                    <li>Her motor için 4x16A çıkış prizi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ARGOS</h3>
+                    <p>Profesyonel ses ve ışık sistemleri alanında Türkiye'nin önde gelen firmasıdır.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="urunler.html">Ürünler</a></li>
+                        <li><a href="projeler.html">Projeler</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="motor-kumanda-sistemleri.html">Motor Kumanda Sistemleri</a></li>
+                        <li><a href="enerji-panosu-sistemleri.html">Enerji Pano Sistemleri</a></li>
+                        <li><a href="truss-sistemleri.html">Truss Sistemleri</a></li>
+                        <li><a href="ses-sistemleri.html">Ses Sistemleri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +90 212 222 07 50</p>
+                        <p><i class="fas fa-envelope"></i> info@argostr.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Argos | Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Modal ve Lightbox işlevselliği
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal işlevselliği
+            const galleryCards = document.querySelectorAll('.gallery-card');
+            const modals = document.querySelectorAll('.modal');
+            const modalCloses = document.querySelectorAll('.modal-close');
+            
+            galleryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const modalId = card.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    modal.style.display = 'block';
+                });
+            });
+            
+            modalCloses.forEach(close => {
+                close.addEventListener('click', () => {
+                    close.closest('.modal').style.display = 'none';
+                });
+            });
+            
+            window.addEventListener('click', (e) => {
+                modals.forEach(modal => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+
+            // Lightbox işlevselliği
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = document.querySelector('.lightbox-content');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const modalMainImages = document.querySelectorAll('.modal-main-image');
+
+            modalMainImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    lightbox.style.display = 'block';
+                    lightboxImg.src = img.src;
+                });
+            });
+
+            lightboxClose.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

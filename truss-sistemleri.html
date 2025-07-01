@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truss Sistemleri - Argos</title>
+    <meta name="description" content="Profesyonel truss sistemleri - Argos">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        header .theme-switch,
+        header .theme-switch *,
+        header .theme-switch-label,
+        header input[type="checkbox"]#theme-toggle,
+        header label[for="theme-toggle"] {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Duman Efekti -->
+    <div class="smoke-container">
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h2>ARGOS</h2>
+                    </a>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Anasayfa</a>
+                    <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+                    <div class="nav-dropdown">
+                        <a href="urunler.html" class="nav-link dropdown-toggle">
+                            Ürünler <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="altyapi-sistemleri.html" class="dropdown-link">
+                                <span>Altyapı Sistemleri</span>
+                            </a>
+                            <a href="hard-case-sistemleri.html" class="dropdown-link">
+                                <span>Hard Case Sistemleri</span>
+                            </a>
+                            <a href="case-aksesuarlari.html" class="dropdown-link">
+                                <span>Case Aksesuarları</span>
+                            </a>
+                            <a href="enerji-panosu-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panosu Sistemleri</span>
+                            </a>
+                            <a href="enerji-box-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Box Sistemleri</span>
+                            </a>
+                            <a href="enerji-panel-sistemleri.html" class="dropdown-link">
+                                <span>Enerji Panel Sistemleri</span>
+                            </a>
+                            <a href="motor-kumanda-sistemleri.html" class="dropdown-link">
+                                <span>Motor Kumanda Sistemleri</span>
+                            </a>
+                            <a href="podyum-sistemleri.html" class="dropdown-link">
+                                <span>Podyum Sistemleri</span>
+                            </a>
+                            <a href="ses-sistemleri.html" class="dropdown-link">
+                                <span>Ses Sistemleri</span>
+                            </a>
+                            <a href="isik-sistemleri.html" class="dropdown-link">
+                                <span>Işık Sistemleri</span>
+                            </a>
+                            <a href="goruntu-sistemleri.html" class="dropdown-link">
+                                <span>Görüntü Sistemleri</span>
+                            </a>
+                            <a href="truss-sistemleri.html" class="dropdown-link">
+                                <span>Truss Sistemleri</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="projeler.html" class="nav-link">Projeler</a>
+                    <a href="iletisim.html" class="nav-link">İletişim</a>
+                    <a href="sunum.html" class="nav-link">Sunum</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pure-project-header">
+        <div class="container">
+            <div class="project-header-content pure">
+                <h1 class="project-title pure">Truss Sistemleri</h1>
+                <p class="project-subtitle pure">Profesyonel sahne ve yapı destek sistemleri</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <a href="https://www.milossystems.com/products/rigging-acc,-workwear" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-155.jpeg.webp" alt="Asma Aksesuarları" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Asma Aksesuarları</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/search?searchtext=Corners" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-156.jpeg.webp" alt="Bağlantılar" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Bağlantılar</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/products/crowd-barriers" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-157.jpeg.webp" alt="Bariyerler" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Bariyerler</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/products/truss/4gs-91" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-158.jpeg.webp" alt="Büyük Truss" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Büyük Truss</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/products/roofs" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-159.jpeg.webp" alt="Çatılar" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Çatılar</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/search?searchtext=circles" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-160.jpeg.webp" alt="Çember & Elips" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Çember & Elips</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/products/cell-clamps" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-161.jpeg.webp" alt="Kelepçeler" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Kelepçeler</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/search?searchtext=book%20corner" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-162.jpeg.webp" alt="Köşeler" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Köşeler</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/products/tower-led-screens" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-163.jpeg.webp" alt="Kuleler" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Kuleler</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/products/truss" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-166.jpeg.webp" alt="Küçük & Orta" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Küçük & Orta</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/products/furniture-dj-kits" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-167.jpeg.webp" alt="Mobilya & DJ Kitleri" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Mobilya & DJ Kitleri</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/search?searchtext=multicube" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-168.jpeg.webp" alt="Multicubes" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Multicubes</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/products/ramps" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-168.jpeg.webp" alt="Rampalar" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Rampalar</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.milossystems.com/search?searchtext=Truss%20Accessories" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-169.jpeg.webp" alt="Truss Aksesuarları" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Truss Aksesuarları</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.xtruss-systems.com/products" target="_blank" rel="noopener noreferrer" class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="https://argostr.com/wp-content/uploads/2023/09/1-170.jpeg.webp" alt="Xtruss" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">Xtruss</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .gallery-section {
+            padding: 80px 0;
+            background: var(--bg-color);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+        
+        .gallery-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 280px;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+            border-radius: 15px;
+        }
+        
+        .gallery-card:hover .gallery-image img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            color: white;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-card:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .gallery-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .gallery-card {
+                height: 220px;
+            }
+            
+            .gallery-title {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .gallery-card {
+                height: 200px;
+            }
+        }
+    </style>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Truss Sistemleri Hakkında Bilgi Almak İster misiniz?</h2>
+                <p>Uzman ekibimizle iletişime geçin, projenize en uygun truss sistemi çözümlerini bulalım.</p>
+                <a href="iletisim.html" class="cta-button">İletişime Geçin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ARGOS</h3>
+                    <p>Profesyonel ses ve ışık sistemleri alanında Türkiye'nin önde gelen firmasıdır.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="urunler.html">Ürünler</a></li>
+                        <li><a href="projeler.html">Projeler</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="truss-sistemleri.html">Truss Sistemleri</a></li>
+                        <li><a href="enerji-panosu-sistemleri.html">Enerji Pano Sistemleri</a></li>
+                        <li><a href="case-aksesuarlari.html">Case Aksesuarları</a></li>
+                        <li><a href="ses-sistemleri.html">Ses Sistemleri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +90 212 222 07 50</p>
+                        <p><i class="fas fa-envelope"></i> info@argostr.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Argos | Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function openModal(imageSrc) {
+            // Create modal if it doesn't exist
+            let modal = document.getElementById('imageModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'imageModal';
+                modal.className = 'image-modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <span class="modal-close">&times;</span>
+                        <img class="modal-image" src="" alt="Büyük resim">
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                // Add modal styles
+                const modalStyles = document.createElement('style');
+                modalStyles.textContent = `
+                    .image-modal {
+                        display: none;
+                        position: fixed;
+                        z-index: 10000;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.9);
+                        animation: fadeIn 0.3s ease;
+                    }
+                    
+                    .modal-content {
+                        position: relative;
+                        margin: auto;
+                        padding: 20px;
+                        width: 90%;
+                        max-width: 800px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        text-align: center;
+                    }
+                    
+                    .modal-image {
+                        width: 100%;
+                        height: auto;
+                        border-radius: 10px;
+                        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+                    }
+                    
+                    .modal-close {
+                        position: absolute;
+                        top: -10px;
+                        right: 10px;
+                        color: white;
+                        font-size: 40px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        z-index: 10001;
+                    }
+                    
+                    .modal-close:hover {
+                        color: #ff6b6b;
+                    }
+                    
+                    @keyframes fadeIn {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(modalStyles);
+                
+                // Close modal events
+                modal.querySelector('.modal-close').onclick = function() {
+                    modal.style.display = 'none';
+                };
+                
+                modal.onclick = function(e) {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                };
+                
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Show modal with image
+            const modalImage = modal.querySelector('.modal-image');
+            modalImage.src = imageSrc;
+            modal.style.display = 'block';
+        }
+    </script>
+</body>
+</html> 
