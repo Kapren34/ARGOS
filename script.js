@@ -1983,4 +1983,13 @@ document.addEventListener('DOMContentLoaded', function() {
             item.classList.toggle('active');
         });
     });
+});
+
+// Dark mode varsayılan olarak ayarla
+document.addEventListener('DOMContentLoaded', function() {
+    // Sayfa yüklendiğinde dark mode'u etkinleştir
+    document.documentElement.setAttribute('data-theme', 'dark');
+    
+    // Local storage'a dark mode tercihini kaydet
+    localStorage.setItem('theme', 'dark');
 }); 
